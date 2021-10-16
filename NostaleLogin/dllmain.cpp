@@ -8,7 +8,7 @@ int main()
     const char* pipeName = "\\\\.\\pipe\\GflessClient";
     int language, server, channel;
     HANDLE hPipe;
-    DWORD dwMode, bytesRead;
+    DWORD dwMode;
     BOOL fSuccess;
     std::string message;
     char readBuffer[BUFFER_SIZE];
@@ -17,135 +17,58 @@ int main()
     // Set up a pipe to communicate with the Gfless Client
     // and receive the values for the language server,
     // the server and the channel
-    while (true)
-    {
-        hPipe = CreateFileA(
-            pipeName,
-            GENERIC_READ | GENERIC_WRITE,
-            0,
-            NULL,
-            OPEN_EXISTING,
-            0,
-            NULL
-        );
 
-        if (hPipe != INVALID_HANDLE_VALUE)
-            break;
+    hPipe = CreateFileA(pipeName, GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, 0, NULL);
 
-        if (GetLastError() != ERROR_PIPE_BUSY)
-            return EXIT_FAILURE;
-
+    if (hPipe == INVALID_HANDLE_VALUE)
         if (!WaitNamedPipeA(pipeName, 20000))
             return EXIT_FAILURE;
-    }
 
     dwMode = PIPE_READMODE_BYTE | PIPE_WAIT;
-    fSuccess = SetNamedPipeHandleState(
-        hPipe,
-        &dwMode,
-        NULL,
-        NULL
-    );
+    fSuccess = SetNamedPipeHandleState(hPipe, &dwMode, NULL, NULL);
 
     if (!fSuccess)
         return EXIT_FAILURE;
 
+    // Send the server language message
     message = "ServerLanguage";
-    fSuccess = WriteFile(
-        hPipe,
-        message.c_str(),
-        message.size(),
-        NULL,
-        NULL
-    );
+    fSuccess = WriteFile(hPipe, message.c_str(), message.size(), NULL, NULL);
 
     if (!fSuccess)
         return EXIT_FAILURE;
 
     ZeroMemory(readBuffer, BUFFER_SIZE);
-    
-    do
-    {
-        fSuccess = ReadFile(
-            hPipe,
-            readBuffer,
-            BUFFER_SIZE,
-            NULL,
-            NULL
-        );
-
-        if (!fSuccess && GetLastError() != ERROR_MORE_DATA)
-            break;
-
-    } while (!fSuccess);
+    fSuccess = ReadFile(hPipe, readBuffer, BUFFER_SIZE, NULL, NULL);
 
     if (!fSuccess)
         return EXIT_FAILURE;
 
     language = readBuffer[0] - 0x30;
 
+    // Send the server message
     message = "Server";
-    fSuccess = WriteFile(
-        hPipe,
-        message.c_str(),
-        message.size(),
-        NULL,
-        NULL
-    );
+    fSuccess = WriteFile(hPipe, message.c_str(), message.size(), NULL, NULL);
 
     if (!fSuccess)
         return EXIT_FAILURE;
 
     ZeroMemory(readBuffer, BUFFER_SIZE);
-
-    do
-    {
-        fSuccess = ReadFile(
-            hPipe,
-            readBuffer,
-            BUFFER_SIZE,
-            NULL,
-            NULL
-        );
-
-        if (!fSuccess && GetLastError() != ERROR_MORE_DATA)
-            break;
-
-    } while (!fSuccess);
+    fSuccess = ReadFile(hPipe, readBuffer, BUFFER_SIZE, NULL, NULL);
 
     if (!fSuccess)
         return EXIT_FAILURE;
 
     server = readBuffer[0] - 0x30;
 
+    // Send the channel message
     message = "Channel";
-    fSuccess = WriteFile(
-        hPipe,
-        message.c_str(),
-        message.size(),
-        NULL,
-        NULL
-    );
+    fSuccess = WriteFile(hPipe, message.c_str(), message.size(), NULL, NULL);
 
     if (!fSuccess)
         return EXIT_FAILURE;
 
     ZeroMemory(readBuffer, BUFFER_SIZE);
-
-    do
-    {
-        fSuccess = ReadFile(
-            hPipe,
-            readBuffer,
-            BUFFER_SIZE,
-            NULL,
-            NULL
-        );
-
-        if (!fSuccess && GetLastError() != ERROR_MORE_DATA)
-            break;
-
-    } while (!fSuccess);
+    fSuccess = ReadFile(hPipe, readBuffer, BUFFER_SIZE, NULL, NULL);
 
     if (!fSuccess)
         return EXIT_FAILURE;
