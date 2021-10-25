@@ -1,7 +1,6 @@
 #include "NewServerSelectWidget.h"
 #include <string>
 
-
 int main()
 {
     const int BUFFER_SIZE = 2;
