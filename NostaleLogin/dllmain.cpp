@@ -99,11 +99,14 @@ DWORD WINAPI DllStart(LPVOID param)
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved)
 {
+    HANDLE hThread;
+
     switch (ul_reason_for_call)
     {
     case DLL_PROCESS_ATTACH:
         DisableThreadLibraryCalls(hModule);
-        CloseHandle(CreateThread(NULL, NULL, DllStart, hModule, NULL, NULL));
+        hThread = CreateThread(NULL, NULL, DllStart, hModule, NULL, NULL);
+        if (hThread != NULL) CloseHandle(hThread);
         break;
     case DLL_THREAD_ATTACH:
     case DLL_THREAD_DETACH:
