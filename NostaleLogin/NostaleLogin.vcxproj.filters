@@ -18,7 +18,22 @@
     <ClCompile Include="dllmain.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="NewServerSelectWidget.cpp">
+    <ClCompile Include="GameStructures\TNTNewServerSelectWidget2.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStructures\TEWGraphicButtonWidget.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStructures\TCharacterSelectWidget.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStructures\TLBSWidget.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStructures\TLBSWidgetList.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="PatternScanner.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
@@ -26,13 +41,22 @@
     <ClInclude Include="PatternScanner.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Structures.h">
+    <ClInclude Include="GameStructures\TLBSWidget.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="NewServerSelectWidget.h">
+    <ClInclude Include="GameStructures\TLBSWidgetList.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="GraphicButtonWidget.h">
+    <ClInclude Include="GameStructures\TCharacterSelectWidget.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStructures\TEWButtonWidget.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStructures\TEWGraphicButtonWidget.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStructures\TNTNewServerSelectWidget2.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

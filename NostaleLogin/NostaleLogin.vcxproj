@@ -154,13 +154,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
-    <ClCompile Include="NewServerSelectWidget.cpp" />
+    <ClCompile Include="GameStructures\TCharacterSelectWidget.cpp" />
+    <ClCompile Include="GameStructures\TEWGraphicButtonWidget.cpp" />
+    <ClCompile Include="GameStructures\TLBSWidget.cpp" />
+    <ClCompile Include="GameStructures\TLBSWidgetList.cpp" />
+    <ClCompile Include="GameStructures\TNTNewServerSelectWidget2.cpp" />
+    <ClCompile Include="PatternScanner.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GraphicButtonWidget.h" />
-    <ClInclude Include="NewServerSelectWidget.h" />
+    <ClInclude Include="GameStructures\TCharacterSelectWidget.h" />
+    <ClInclude Include="GameStructures\TEWButtonWidget.h" />
+    <ClInclude Include="GameStructures\TEWGraphicButtonWidget.h" />
+    <ClInclude Include="GameStructures\TLBSWidget.h" />
+    <ClInclude Include="GameStructures\TLBSWidgetList.h" />
+    <ClInclude Include="GameStructures\TNTNewServerSelectWidget2.h" />
     <ClInclude Include="PatternScanner.h" />
-    <ClInclude Include="Structures.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
